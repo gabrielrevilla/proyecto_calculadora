@@ -1,5 +1,7 @@
 package com.azhex.calcuadora;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static TextView numeroIntroducido_caja;
     private static TextView numeroMemoria_caja;
+    private String separacionXMil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
         //Inicialización de textViews
         numeroIntroducido_caja = findViewById(R.id.numeroIntroducido);
         numeroMemoria_caja = findViewById(R.id.numeroMemoria);
+
+        //buscar en los recursos: coma o punto
+        separacionXMil =  getResources().getString(R.string.decimal);
+
     }
 
 
@@ -85,7 +92,9 @@ public class MainActivity extends AppCompatActivity {
                 numeroIntroducido = numeroIntroducido+9;
                 break;
         }
-        numeroIntroducido_caja.setText(numeroIntroducido);
+        String numeroConComas = Utiles.addCommasToNumericString(numeroIntroducido, separacionXMil);
+        numeroIntroducido_caja.setText(numeroConComas);
+
     }
 
 
