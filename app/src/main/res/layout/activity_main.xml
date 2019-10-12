@@ -17,14 +17,15 @@
         android:weightSum="100">
 
         <TextView
+            android:id="@+id/numeroMemoria"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="35"
             android:textAlignment="center"
             android:textSize="30dp" />
 
-        <EditText
-            android:id="@+id/inNum1"
+        <TextView
+            android:id="@+id/numeroIntroducido"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="65" />
@@ -248,6 +249,7 @@
             <Button
                 android:id="@+id/button_cero"
                 style="@style/calcBtn"
+                android:onClick="escribirNumero"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="80"

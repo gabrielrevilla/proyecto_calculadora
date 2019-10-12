@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,20 +31,32 @@ public class MainActivity extends AppCompatActivity {
     public static String numeroIntroducido = "";
     public static String numeroMemoria;
 
+    private static TextView numeroIntroducido_caja;
+    private static TextView numeroMemoria_caja;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        //Inicialización de textViews
+        numeroIntroducido_caja = findViewById(R.id.numeroIntroducido);
+        numeroMemoria_caja = findViewById(R.id.numeroMemoria);
     }
 
 
     //CONTROL DE LISTENERS --> NUMEROS, OPERACIONES, MEMORIA...
     //NUMEROS
-    private void escribirNumero(View view) {
-        Button buttonNumero = (Button) view;
-        switch (buttonNumero.getId()){
+
+    /**
+     * Permite escribir numeros.
+     * @param view Boton numerico de la calculadora pulsado
+     */
+    public void escribirNumero(View view) {
+        switch (view.getId()){
+            case R.id.button_cero:
+                numeroIntroducido = numeroIntroducido+0;
+                break;
             case R.id.button_uno:
                 numeroIntroducido = numeroIntroducido+1;
                 break;
@@ -71,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 numeroIntroducido = numeroIntroducido+9;
                 break;
         }
+        numeroIntroducido_caja.setText(numeroIntroducido);
     }
 
 
@@ -86,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
             Button buttonOperacion = (Button) view;
             switch (buttonOperacion.getId()){
                 case R.id.button_sumar:
+
 
                     break;
                 case R.id.button_restar:
