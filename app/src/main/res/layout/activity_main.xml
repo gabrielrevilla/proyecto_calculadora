@@ -2,12 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    android:orientation="vertical"
     android:padding="5dp"
-    android:weightSum="100">
+    android:weightSum="100"
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,15 +19,15 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="35"
             android:textAlignment="center"
-            android:textSize="30dp"
-            android:layout_weight="35"/>
+            android:textSize="30dp" />
 
         <EditText
             android:id="@+id/inNum1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="65"/>
+            android:layout_weight="65" />
     </LinearLayout>
 
     <TableLayout
@@ -42,34 +42,36 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/button_mc"
+                style="@style/calcBtnMemoria"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="MC"
                 android:layout_weight="1"
-                style="@style/calcBtnMemoria"/>
+                android:text="MC" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button_m_mas"
+                style="@style/calcBtnMemoria"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="M+"
                 android:layout_weight="1"
-                style="@style/calcBtnMemoria"/>
+                android:text="M+" />
+
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button_m_menos"
+                style="@style/calcBtnMemoria"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="M-"
                 android:layout_weight="1"
-                style="@style/calcBtnMemoria"/>
+                android:text="M-" />
+
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button_m_r"
+                style="@style/calcBtnMemoria"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="MR"
                 android:layout_weight="1"
-                style="@style/calcBtnMemoria"/>
+                android:text="MR" />
         </TableRow>
 
         <TableRow
@@ -78,34 +80,37 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/button_a_c"
+                style="@style/calcBtn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="AC"
                 android:layout_weight="1"
-                style="@style/calcBtn"/>
+                android:text="AC" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button_mas_menos"
+                style="@style/calcBtn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="+/-"
                 android:layout_weight="1"
-                style="@style/calcBtn"/>
+                android:text="+/-" />
+
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button_porcentaje"
+                style="@style/calcBtn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="%"
                 android:layout_weight="1"
-                style="@style/calcBtn"/>
+                android:text="%" />
+
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button_division"
+                style="@style/calcBtn"
+                android:onClick="operacionElegida"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="/"
                 android:layout_weight="1"
-                style="@style/calcBtn"/>
+                android:text="/" />
         </TableRow>
 
         <TableRow
@@ -114,34 +119,40 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/button_siete"
+                style="@style/calcBtn"
+                android:onClick="escribirNumero"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="7"
                 android:layout_weight="1"
-                style="@style/calcBtn"/>
+                android:text="7" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button_ocho"
+                style="@style/calcBtn"
+                android:onClick="escribirNumero"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="8"
                 android:layout_weight="1"
-                style="@style/calcBtn"/>
+                android:text="8" />
+
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button_nueve"
+                style="@style/calcBtn"
+                android:onClick="escribirNumero"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="9"
                 android:layout_weight="1"
-                style="@style/calcBtn"/>
+                android:text="9" />
+
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button_multiplicar"
+                style="@style/calcBtn"
+                android:onClick="operacionElegida"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="X"
                 android:layout_weight="1"
-                style="@style/calcBtn"/>
+                android:text="X" />
         </TableRow>
 
         <TableRow
@@ -150,66 +161,113 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/button_seis"
+                style="@style/calcBtn"
+                android:onClick="escribirNumero"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="6"
                 android:layout_weight="1"
-                style="@style/calcBtn"/>
+                android:text="6" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button_cinco"
+                style="@style/calcBtn"
+                android:onClick="escribirNumero"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="5"
                 android:layout_weight="1"
-                style="@style/calcBtn"/>
+                android:text="5" />
+
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button_cuatro"
+                style="@style/calcBtn"
+                android:onClick="escribirNumero"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="4"
                 android:layout_weight="1"
-                style="@style/calcBtn" />
+                android:text="4" />
+
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button_sumar"
+                style="@style/calcBtn"
+                android:onClick="operacionElegida"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="+"
                 android:layout_weight="1"
-                style="@style/calcBtn"/>
+                android:text="+" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/button_tres"
+                style="@style/calcBtn"
+                android:onClick="escribirNumero"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="3" />
+
+            <Button
+                android:id="@+id/button_dos"
+                style="@style/calcBtn"
+                android:onClick="escribirNumero"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="2" />
+
+            <Button
+                android:id="@+id/button_uno"
+                style="@style/calcBtn"
+                android:onClick="escribirNumero"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="1" />
+
+            <Button
+                android:id="@+id/button_restar"
+                style="@style/calcBtn"
+                android:onClick="operacionElegida"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="-" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:weightSum="4">
+            android:weightSum="100">
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/button_cero"
+                style="@style/calcBtn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="0"
-                android:layout_weight="2"
-                style="@style/calcBtn"/>
+                android:layout_weight="80"
+                android:text="0" />
+
+            <Button
+                android:id="@+id/button_coma"
+                style="@style/calcBtn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="10"
+                android:text="@string/decimal" />
 
             <Button
                 android:id="@+id/button"
+                style="@style/calcBtn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/decimal"
-                android:layout_weight="1"
-                style="@style/calcBtn"/>
-            <Button
-                android:id="@+id/button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="="
-                android:layout_weight="1"
-                style="@style/calcBtn"/>
+                android:layout_weight="10"
+                android:text="=" />
         </TableRow>
     </TableLayout>
-
-
 </LinearLayout>
