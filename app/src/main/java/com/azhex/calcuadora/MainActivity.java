@@ -10,7 +10,7 @@ public class MainActivity extends AppCompatActivity {
     //TODO
     /*
     1. Hacer funcionar una opearcion, la suma.
-    2.
+    2. Acceso al repositorio
     3.
     4.
     legibilidad y organización del código (indentado, estructura, comentarios) [1 punto]

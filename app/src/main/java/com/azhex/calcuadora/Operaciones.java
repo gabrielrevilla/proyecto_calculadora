@@ -1,9 +1,9 @@
 package com.azhex.calcuadora;
 
 public class Operaciones {
-    public static int sumar(String primerNumero, String segundoNumero){
-        int suma = 0;
-        suma = Integer.valueOf(primerNumero) + Integer.valueOf(segundoNumero);
+    public static Double sumar(String primerNumero, String segundoNumero){
+        Double suma = 0.0;
+        suma = Double.valueOf(primerNumero) + Double.valueOf(segundoNumero);
         return suma;
     }
 
@@ -12,10 +12,10 @@ public class Operaciones {
      * @param segundoNumero String que contiene solo numeros, esta resta a la primera String
      * @return int, resultado de la resta
      */
-    public static int resta(String primerNumero, String segundoNumero){
-        int suma = 0;
-        suma = Integer.valueOf(primerNumero) - Integer.valueOf(segundoNumero);
-        return suma;
+    public static Double resta(String primerNumero, String segundoNumero){
+        Double resta = 0.0;
+        resta = Double.valueOf(primerNumero) - Double.valueOf(segundoNumero);
+        return resta;
     }
 
 
