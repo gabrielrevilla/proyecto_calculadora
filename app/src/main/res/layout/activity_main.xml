@@ -258,14 +258,16 @@
             <Button
                 android:id="@+id/button_coma"
                 style="@style/calcBtn"
+                android:onClick="escribirDecimal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="10"
                 android:text="@string/decimal" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button_ igual"
                 style="@style/calcBtn"
+                android:onClick="pulsarBotonIgual"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="10"

@@ -62,7 +62,9 @@ public class MainActivity extends AppCompatActivity {
     public void escribirNumero(View view) {
         switch (view.getId()){
             case R.id.button_cero:
-                numeroIntroducido = numeroIntroducido+0;
+                if (!numeroIntroducido.isEmpty()){
+                    numeroIntroducido = numeroIntroducido+0;
+                }
                 break;
             case R.id.button_uno:
                 numeroIntroducido = numeroIntroducido+1;
@@ -104,20 +106,29 @@ public class MainActivity extends AppCompatActivity {
     //      --Teniendo el segundo numero introducido--
     //          2.1. Si le da a otra operación: el resultado de la operacion anterior se guarda en el numeroMemoria, se empieza el punto 2. otra vez.
     //          2.2. Si le da al boton igual "=" -> mostrar resultado
+
     //OPERACIONES
-    private void operacionElegida(View view) {
+    //TODO DEBE DEVOVLER EL TIPO DE OPERACIÓN
+    private int operacionElegida(View view) {
+        int idBotonOperacion = 0;
         if (!(numeroIntroducido.equals("") && numeroMemoria.equals(""))){
             Button buttonOperacion = (Button) view;
             switch (buttonOperacion.getId()){
                 case R.id.button_sumar:
-
-
+                    numeroMemoria  = numeroIntroducido_caja.getText().toString();
+                    idBotonOperacion = R.id.button_sumar;
                     break;
                 case R.id.button_restar:
+                    numeroMemoria  = numeroIntroducido_caja.getText().toString();
+                    idBotonOperacion = R.id.button_sumar;
                     break;
                 case R.id.button_division:
+                    numeroMemoria  = numeroIntroducido_caja.getText().toString();
+                    idBotonOperacion = R.id.button_sumar;
                     break;
                 case R.id.button_multiplicar:
+                    numeroMemoria  = numeroIntroducido_caja.getText().toString();
+                    idBotonOperacion = R.id.button_sumar;
                     break;
                 case R.id.button_a_c:
                     break;
@@ -127,9 +138,51 @@ public class MainActivity extends AppCompatActivity {
                     //TODO control de resultado
                     break;
             }
+            numeroIntroducido_caja.setText("");
+            numeroMemoria_caja.setText(numeroMemoria);
+        }
+        return idBotonOperacion;
+    }
+    public void pulsarBotonIgual(View view, int butonOperacionID) {
+        //castear String to Double para hacer los operaciones
+        Double primerNumero =  Double.parseDouble(numeroMemoria_caja.getText().toString());
+        Double segundoNumero = Double.parseDouble(numeroMemoria_caja.getText().toString());
+        Double resultadosAux = 0.0;
+        switch (butonOperacionID){
+            case R.id.button_sumar:
+                resultadosAux = primerNumero + segundoNumero;
+                break;
+            case R.id.button_restar:
+
+                break;
+            case R.id.button_division:
+
+                break;
+            case R.id.button_multiplicar:
+
+                break;
+            //------------------------
+            case R.id.button_porcentaje:
+                break;
+            case R.id.button_mas_menos:
+                break;
+            case R.id.button_a_c:
+                break;
 
         }
-
+        numeroMemoria = String.valueOf(resultadosAux);
+        numeroMemoria_caja.setText(String.valueOf(resultadosAux ));
     }
+
+    public void escribirDecimal(View view) {
+        Button buttonComa = (Button) view;
+        if (!buttonComa.getText().toString().isEmpty()){
+            buttonComa.append("0");
+            buttonComa.append(separacionXMil);
+        }else if (buttonComa.getText().toString().indexOf(separacionXMil) < 0){
+            buttonComa.append(separacionXMil);
+        }
+    }
+
 
 }
