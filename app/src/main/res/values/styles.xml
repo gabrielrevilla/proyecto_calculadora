@@ -9,11 +9,16 @@
     </style>
 
     <style name="calcBtnMemoria">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:textSize">20dp</item>
     </style>
 
     <style name="calcBtn">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:textSize">25dp</item>
+        <item name="android:onClick"></item>
     </style>
 
 </resources>
