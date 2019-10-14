@@ -153,18 +153,25 @@ public class MainActivity extends AppCompatActivity {
                 resultadosAux = primerNumero + segundoNumero;
                 break;
             case R.id.button_restar:
-
+                resultadosAux = primerNumero - segundoNumero;
                 break;
             case R.id.button_division:
-
+                resultadosAux = primerNumero / segundoNumero;
                 break;
             case R.id.button_multiplicar:
-
+                resultadosAux = primerNumero * segundoNumero;
                 break;
             //------------------------
             case R.id.button_porcentaje:
+                //TODO
+
                 break;
             case R.id.button_mas_menos:
+                if (segundoNumero  < 0){ //negativo
+                    resultadosAux = 0+segundoNumero;
+                } else{ //positivo
+                    resultadosAux = 0-segundoNumero;
+                }
                 break;
             case R.id.button_a_c:
                 break;
