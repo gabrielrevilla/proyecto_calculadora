@@ -67,31 +67,31 @@ public class MainActivity extends AppCompatActivity {
                     numeroIntroducido = numeroIntroducido+0;
                 }
                 break;
-            case R.id.button_uno:
+            case R.id.btnCalc1:
                 numeroIntroducido = numeroIntroducido+1;
                 break;
-            case R.id.button_dos:
+            case R.id.btnCalc2:
                 numeroIntroducido = numeroIntroducido+2;
                 break;
-            case R.id.button_tres:
+            case R.id.btnCalc3:
                 numeroIntroducido = numeroIntroducido+3;
                 break;
-            case R.id.button_cuatro:
+            case R.id.btnCalc4:
                 numeroIntroducido = numeroIntroducido+4;
                 break;
-            case R.id.button_cinco:
+            case R.id.btnCalc5:
                 numeroIntroducido = numeroIntroducido+5;
                 break;
-            case R.id.button_seis:
+            case R.id.btnCalc6:
                 numeroIntroducido = numeroIntroducido+6;
                 break;
-            case R.id.button_siete:
+            case R.id.btnCalc7:
                 numeroIntroducido = numeroIntroducido+7;
                 break;
-            case R.id.button_ocho:
+            case R.id.btnCalc8:
                 numeroIntroducido = numeroIntroducido+8;
                 break;
-            case R.id.button_nueve:
+            case R.id.btnCalc9:
                 numeroIntroducido = numeroIntroducido+9;
                 break;
         }
@@ -114,27 +114,27 @@ public class MainActivity extends AppCompatActivity {
         if (!(numeroIntroducido.equals("") && numeroMemoria.equals(""))){
             Button buttonOperacion = (Button) view;
             switch (buttonOperacion.getId()){
-                case R.id.button_sumar:
+                case R.id.btnCalcPlus:
                     numeroMemoria  = numeroIntroducido_caja.getText().toString();
-                    btnOperacion = R.id.button_sumar;
+                    btnOperacion = R.id.btnCalcPlus;
                     break;
-                case R.id.button_restar:
+                case R.id.btnCalcMinus:
                     numeroMemoria  = numeroIntroducido_caja.getText().toString();
-                    btnOperacion = R.id.button_restar;
+                    btnOperacion = R.id.btnCalcMinus;
                     break;
-                case R.id.button_division:
+                case R.id.btnCalcDivide:
                     numeroMemoria  = numeroIntroducido_caja.getText().toString();
-                    btnOperacion = R.id.button_multiplicar;
+                    btnOperacion = R.id.btnCalcMultiply;
                     break;
-                case R.id.button_multiplicar:
+                case R.id.btnCalcMultiply:
                     numeroMemoria  = numeroIntroducido_caja.getText().toString();
-                    btnOperacion = R.id.button_division;
+                    btnOperacion = R.id.btnCalcDivide;
                     break;
-                case R.id.button_a_c:
+                case R.id.btnCalcAc:
                     break;
-                case R.id.button_mas_menos:
+                case R.id.btnCalcPlusMinus:
                     break;
-                case R.id.button_porcentaje:
+                case R.id.btnCalcPercent:
                     //TODO control de resultado
                     break;
             }
@@ -149,31 +149,31 @@ public class MainActivity extends AppCompatActivity {
         Double resultadosAux = 0.0;
 
         switch (btnOperacion){
-            case R.id.button_sumar:
+            case R.id.btnCalcPlus:
                 resultadosAux = primerNumero + segundoNumero;
                 break;
-            case R.id.button_restar:
+            case R.id.btnCalcMinus:
                 resultadosAux = primerNumero - segundoNumero;
                 break;
-            case R.id.button_division:
+            case R.id.btnCalcDivide:
                 resultadosAux = primerNumero / segundoNumero;
                 break;
-            case R.id.button_multiplicar:
+            case R.id.btnCalcMultiply:
                 resultadosAux = primerNumero * segundoNumero;
                 break;
             //------------------------
-            case R.id.button_porcentaje:
+            case R.id.btnCalcPercent:
                 //TODO
 
                 break;
-            case R.id.button_mas_menos:
+            case R.id.btnCalcPlusMinus:
                 if (segundoNumero  < 0){ //negativo
                     resultadosAux = 0+segundoNumero;
                 } else{ //positivo
                     resultadosAux = 0-segundoNumero;
                 }
                 break;
-            case R.id.button_a_c:
+            case R.id.btnCalcAc:
                 break;
 
         }
