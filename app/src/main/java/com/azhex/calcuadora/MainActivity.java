@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private static TextView numeroIntroducido_caja;
     private static TextView numeroMemoria_caja;
     private String separacionXMil;
+    private int btnOperacion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,26 +110,25 @@ public class MainActivity extends AppCompatActivity {
 
     //OPERACIONES
     //TODO DEBE DEVOVLER EL TIPO DE OPERACIÓN
-    private int operacionElegida(View view) {
-        int idBotonOperacion = 0;
+    public void operacionElegida(View view) {
         if (!(numeroIntroducido.equals("") && numeroMemoria.equals(""))){
             Button buttonOperacion = (Button) view;
             switch (buttonOperacion.getId()){
                 case R.id.button_sumar:
                     numeroMemoria  = numeroIntroducido_caja.getText().toString();
-                    idBotonOperacion = R.id.button_sumar;
+                    btnOperacion = R.id.button_sumar;
                     break;
                 case R.id.button_restar:
                     numeroMemoria  = numeroIntroducido_caja.getText().toString();
-                    idBotonOperacion = R.id.button_sumar;
+                    btnOperacion = R.id.button_restar;
                     break;
                 case R.id.button_division:
                     numeroMemoria  = numeroIntroducido_caja.getText().toString();
-                    idBotonOperacion = R.id.button_sumar;
+                    btnOperacion = R.id.button_multiplicar;
                     break;
                 case R.id.button_multiplicar:
                     numeroMemoria  = numeroIntroducido_caja.getText().toString();
-                    idBotonOperacion = R.id.button_sumar;
+                    btnOperacion = R.id.button_division;
                     break;
                 case R.id.button_a_c:
                     break;
@@ -141,14 +141,14 @@ public class MainActivity extends AppCompatActivity {
             numeroIntroducido_caja.setText("");
             numeroMemoria_caja.setText(numeroMemoria);
         }
-        return idBotonOperacion;
     }
-    public void pulsarBotonIgual(View view, int butonOperacionID) {
+    public void pulsarBotonIgual(View view) {
         //castear String to Double para hacer los operaciones
         Double primerNumero =  Double.parseDouble(numeroMemoria_caja.getText().toString());
         Double segundoNumero = Double.parseDouble(numeroMemoria_caja.getText().toString());
         Double resultadosAux = 0.0;
-        switch (butonOperacionID){
+
+        switch (btnOperacion){
             case R.id.button_sumar:
                 resultadosAux = primerNumero + segundoNumero;
                 break;
@@ -172,6 +172,8 @@ public class MainActivity extends AppCompatActivity {
         }
         numeroMemoria = String.valueOf(resultadosAux);
         numeroMemoria_caja.setText(String.valueOf(resultadosAux ));
+        numeroIntroducido = "";
+        numeroIntroducido_caja.setText("");
     }
 
     public void escribirDecimal(View view) {
