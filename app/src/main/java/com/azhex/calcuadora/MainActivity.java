@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     //Declaramos dos variables: el numeroEnMemoria y el numeroIntroducido;
     //Los declaramos como String -> por que el usario introduce un numero a la vez, por lo que podremos concatenarlos y entonces convertirlos en un int de más de una cifra
     public static String numeroIntroducido = "";
-    public static String numeroMemoria;
+    public static String numeroMemoria = "";
 
     private static TextView numeroIntroducido_caja;
     private static TextView numeroMemoria_caja;
@@ -115,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
             Button buttonOperacion = (Button) view;
             switch (buttonOperacion.getId()){
                 case R.id.btnCalcPlus:
+                    //TODO esto está mal, no deja sumar 3 veces seguidas.
                     numeroMemoria  = numeroIntroducido_caja.getText().toString();
                     btnOperacion = R.id.btnCalcPlus;
                     break;
@@ -138,8 +139,11 @@ public class MainActivity extends AppCompatActivity {
                     //TODO control de resultado
                     break;
             }
+            numeroIntroducido = " ";
             numeroIntroducido_caja.setText("");
+
             numeroMemoria_caja.setText(numeroMemoria);
+            numeroMemoria = "";
         }
     }
     public void pulsarBotonIgual(View view) {
@@ -168,9 +172,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.btnCalcPlusMinus:
                 if (segundoNumero  < 0){ //negativo
-                    resultadosAux = 0+segundoNumero;
+                    resultadosAux = segundoNumero * (+1);
                 } else{ //positivo
-                    resultadosAux = 0-segundoNumero;
+                    resultadosAux = segundoNumero * (-1);
                 }
                 break;
             case R.id.btnCalcAc:
@@ -178,10 +182,16 @@ public class MainActivity extends AppCompatActivity {
 
         }
         numeroMemoria = String.valueOf(resultadosAux);
-        numeroMemoria_caja.setText(String.valueOf(resultadosAux ));
+        numeroMemoria_caja.setText(String.valueOf(resultadosAux));
         numeroIntroducido = "";
         numeroIntroducido_caja.setText("");
     }
+
+    //Botones memoria
+
+
+
+
 
     public void escribirDecimal(View view) {
         Button buttonComa = (Button) view;
@@ -192,6 +202,4 @@ public class MainActivity extends AppCompatActivity {
             buttonComa.append(separacionXMil);
         }
     }
-
-
 }
