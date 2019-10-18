@@ -30,13 +30,10 @@ public class MainActivity extends AppCompatActivity {
 
     //Declaramos dos variables: el numeroEnMemoria y el numeroIntroducido;
     //Los declaramos como String -> por que el usario introduce un numero a la vez, por lo que podremos concatenarlos y entonces convertirlos en un int de más de una cifra
-    public static String numeroIntroducido = "";
-    public static String numeroMemoria = "";
 
     private static TextView numeroIntroducido_caja;
     private static TextView numeroMemoria_caja;
     private String separacionXMil;
-    private int btnOperacion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,40 +60,49 @@ public class MainActivity extends AppCompatActivity {
     public void escribirNumero(View view) {
         switch (view.getId()){
             case R.id.button_cero:
-                if (!numeroIntroducido.isEmpty()){
-                    numeroIntroducido = numeroIntroducido+0;
+                if (!numeroIntroducido_caja.getText().toString().matches("")){
+                    numeroIntroducido_caja.append("0");
                 }
                 break;
             case R.id.btnCalc1:
-                numeroIntroducido = numeroIntroducido+1;
+                numeroIntroducido_caja.append("1");
                 break;
             case R.id.btnCalc2:
-                numeroIntroducido = numeroIntroducido+2;
+                numeroIntroducido_caja.append("2");
                 break;
             case R.id.btnCalc3:
-                numeroIntroducido = numeroIntroducido+3;
+                numeroIntroducido_caja.append("3");
                 break;
             case R.id.btnCalc4:
-                numeroIntroducido = numeroIntroducido+4;
+                numeroIntroducido_caja.append("4");
                 break;
             case R.id.btnCalc5:
-                numeroIntroducido = numeroIntroducido+5;
+                numeroIntroducido_caja.append("5");
                 break;
             case R.id.btnCalc6:
-                numeroIntroducido = numeroIntroducido+6;
+                numeroIntroducido_caja.append("6");
                 break;
             case R.id.btnCalc7:
-                numeroIntroducido = numeroIntroducido+7;
+                numeroIntroducido_caja.append("7");
                 break;
             case R.id.btnCalc8:
-                numeroIntroducido = numeroIntroducido+8;
+                numeroIntroducido_caja.append("8");
                 break;
             case R.id.btnCalc9:
-                numeroIntroducido = numeroIntroducido+9;
+                numeroIntroducido_caja.append("9");
+                break;
+            case R.id.button_coma:
+                Button buttonComa = (Button) view;
+                if (!buttonComa.getText().toString().isEmpty()) {
+                    numeroIntroducido_caja.append("0");
+                    numeroIntroducido_caja.append(getResources().getString(R.string.decimal));
+                }else{
+                    numeroIntroducido_caja.append(getResources().getString(R.string.decimal));
+                }
                 break;
         }
-        String numeroConComas = Utiles.addCommasToNumericString(numeroIntroducido, separacionXMil);
-        numeroIntroducido_caja.setText(numeroConComas);
+
+        //todo separación por mil
 
     }
 
@@ -111,95 +117,81 @@ public class MainActivity extends AppCompatActivity {
     //OPERACIONES
     //TODO DEBE DEVOVLER EL TIPO DE OPERACIÓN
     public void operacionElegida(View view) {
-        if (!(numeroIntroducido.equals("") && numeroMemoria.equals(""))){
+        numeroMemoria_caja.setText(numeroIntroducido_caja.getText());
+        numeroIntroducido_caja.setText("");
+        if (!(numeroMemoria_caja.getText().toString().matches(""))){
             Button buttonOperacion = (Button) view;
             switch (buttonOperacion.getId()){
                 case R.id.btnCalcPlus:
-                    //TODO esto está mal, no deja sumar 3 veces seguidas.
-                    numeroMemoria  = numeroIntroducido_caja.getText().toString();
-                    btnOperacion = R.id.btnCalcPlus;
+                    numeroMemoria_caja.append("+");
                     break;
                 case R.id.btnCalcMinus:
-                    numeroMemoria  = numeroIntroducido_caja.getText().toString();
-                    btnOperacion = R.id.btnCalcMinus;
+                    numeroMemoria_caja.append("-");
                     break;
                 case R.id.btnCalcDivide:
-                    numeroMemoria  = numeroIntroducido_caja.getText().toString();
-                    btnOperacion = R.id.btnCalcMultiply;
+                    numeroMemoria_caja.append("/");
                     break;
                 case R.id.btnCalcMultiply:
-                    numeroMemoria  = numeroIntroducido_caja.getText().toString();
-                    btnOperacion = R.id.btnCalcDivide;
+                    numeroMemoria_caja.append("*");
                     break;
-                case R.id.btnCalcAc:
-                    break;
-                case R.id.btnCalcPlusMinus:
-                    break;
+                    /*
                 case R.id.btnCalcPercent:
                     //TODO control de resultado
                     break;
-            }
-            numeroIntroducido = " ";
-            numeroIntroducido_caja.setText("");
 
-            numeroMemoria_caja.setText(numeroMemoria);
-            numeroMemoria = "";
+                     */
+            }
         }
     }
     public void pulsarBotonIgual(View view) {
+        //identificar la operacion
+        String operacion = String.valueOf(numeroMemoria_caja.getText().toString().charAt(0));
+        //quitar la operacion del memoria_caja
+        String segundoNumeroSinOperacion = numeroMemoria_caja.getText().toString().substring(1);
         //castear String to Double para hacer los operaciones
         Double primerNumero =  Double.parseDouble(numeroMemoria_caja.getText().toString());
-        Double segundoNumero = Double.parseDouble(numeroMemoria_caja.getText().toString());
+        Double segundoNumero = Double.parseDouble(numeroIntroducido_caja.getText().toString());
         Double resultadosAux = 0.0;
-
-        switch (btnOperacion){
-            case R.id.btnCalcPlus:
+        switch (operacion){
+            case "+":
                 resultadosAux = primerNumero + segundoNumero;
                 break;
-            case R.id.btnCalcMinus:
+            case "-":
                 resultadosAux = primerNumero - segundoNumero;
                 break;
-            case R.id.btnCalcDivide:
+            case "/":
                 resultadosAux = primerNumero / segundoNumero;
                 break;
-            case R.id.btnCalcMultiply:
+            case "*":
                 resultadosAux = primerNumero * segundoNumero;
                 break;
-            //------------------------
-            case R.id.btnCalcPercent:
-                //TODO
-
-                break;
-            case R.id.btnCalcPlusMinus:
-                if (segundoNumero  < 0){ //negativo
-                    resultadosAux = segundoNumero * (+1);
-                } else{ //positivo
-                    resultadosAux = segundoNumero * (-1);
-                }
-                break;
-            case R.id.btnCalcAc:
-                break;
-
         }
-        numeroMemoria = String.valueOf(resultadosAux);
         numeroMemoria_caja.setText(String.valueOf(resultadosAux));
-        numeroIntroducido = "";
         numeroIntroducido_caja.setText("");
     }
 
-    //Botones memoria
+    public void borrarCalculadora(View view) {
+        numeroMemoria_caja.setText("");
+        numeroIntroducido_caja.setText("");
+    }
 
+    public void cambiarSigno(View view) {
+        Double numero = Double.valueOf(numeroMemoria_caja.getText().toString());
+        if (numero != 0){
+            if (numero > 0){
+                // + --> -
+                numero = numero * (-1);
+            } else if (numero < 0){
+                // - --> +
+                numero = numero * (-1);
+            }
+        }
+    }
 
-
-
-
-    public void escribirDecimal(View view) {
-        Button buttonComa = (Button) view;
-        if (!buttonComa.getText().toString().isEmpty()){
-            buttonComa.append("0");
-            buttonComa.append(separacionXMil);
-        }else if (buttonComa.getText().toString().indexOf(separacionXMil) < 0){
-            buttonComa.append(separacionXMil);
+    public void calcularPorcentaje(View view) {
+        Double numero = Double.valueOf(numeroMemoria_caja.getText().toString());
+        if (numero > 100) {
+            numero = numero / 100;
         }
     }
 }
