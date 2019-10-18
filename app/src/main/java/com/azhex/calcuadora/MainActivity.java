@@ -33,7 +33,9 @@ public class MainActivity extends AppCompatActivity {
 
     private static TextView numeroIntroducido_caja;
     private static TextView numeroMemoria_caja;
+    private static Double numeroMemoria;
     private String separacionXMil;
+    private static TextView textView_simbolo_memoria;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
 
         //buscar en los recursos: coma o punto
         separacionXMil =  getResources().getString(R.string.decimal);
+        //simbolo memoria
+        textView_simbolo_memoria = findViewById(R.id.simboloMemodia);
 
     }
 
@@ -193,5 +197,10 @@ public class MainActivity extends AppCompatActivity {
         if (numero > 100) {
             numero = numero / 100;
         }
+    }
+
+    public void borrarMemoria(View view) {
+        numeroMemoria = 0.0;
+        textView_simbolo_memoria.setText("");
     }
 }

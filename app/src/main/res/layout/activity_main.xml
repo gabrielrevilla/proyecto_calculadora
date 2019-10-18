@@ -25,14 +25,30 @@
             android:maxLines="1"
             android:textSize="25dp" />
 
-        <TextView
-            android:id="@+id/numeroIntroducido"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
             android:layout_weight="60"
-            android:textSize="40dp"
-            android:maxLines="1"
-            android:textAlignment="textEnd"/>
+            android:minHeight="0dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/simboloMemodia"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="20"
+                android:textSize="40dp"
+                android:maxLines="1"
+                android:textAlignment="textEnd"/>
+
+            <TextView
+                android:id="@+id/numeroIntroducido"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="80"
+                android:textSize="40dp"
+                android:maxLines="1"
+                android:textAlignment="textEnd"/>
+        </LinearLayout>
+
     </LinearLayout>
 
     <TableLayout
@@ -47,6 +63,7 @@
             android:layout_weight="1">
 
             <Button
+                android:onClick="borrarMemoria"
                 android:id="@+id/btnCalcMc"
                 style="@style/calcBtnMemoria"
                 android:layout_weight="1"
