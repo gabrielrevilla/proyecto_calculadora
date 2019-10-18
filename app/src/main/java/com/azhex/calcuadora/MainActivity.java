@@ -1,12 +1,9 @@
 package com.azhex.calcuadora;
 
-import android.content.Context;
-import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,10 +29,22 @@ public class MainActivity extends AppCompatActivity {
     //Los declaramos como String -> por que el usario introduce un numero a la vez, por lo que podremos concatenarlos y entonces convertirlos en un int de más de una cifra
 
     private static TextView numeroIntroducido_caja;
-    private static TextView numeroMemoria_caja;
-    private static Double numeroMemoria;
+    private static TextView segundoNumero_caja;
     private String separacionXMil;
     private static TextView textView_simbolo_memoria;
+
+    /*
+    OPERACIONES:
+
+    0 -> nada
+    1 -> SUMAR
+    2 -> RESTAR
+    3 -> MULTIPLICAR
+    4 -> DIVIDIR
+     */
+    private int operacion = 0;
+    private double numeroMemoria = 0;
+    private double numeroIntroducido = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Inicialización de textViews
         numeroIntroducido_caja = findViewById(R.id.numeroIntroducido);
-        numeroMemoria_caja = findViewById(R.id.numeroMemoria);
+        segundoNumero_caja = findViewById(R.id.numeroMemoria);
 
         //buscar en los recursos: coma o punto
         separacionXMil =  getResources().getString(R.string.decimal);
@@ -99,15 +108,16 @@ public class MainActivity extends AppCompatActivity {
                 Button buttonComa = (Button) view;
                 if (!buttonComa.getText().toString().isEmpty()) {
                     numeroIntroducido_caja.append("0");
-                    numeroIntroducido_caja.append(getResources().getString(R.string.decimal));
+                    numeroIntroducido_caja.append(".");
                 }else{
-                    numeroIntroducido_caja.append(getResources().getString(R.string.decimal));
+                    numeroIntroducido_caja.append(".");
                 }
                 break;
         }
 
-        //todo separación por mil
-
+        numeroIntroducido = Double.parseDouble(numeroIntroducido_caja.getText().toString());
+        numeroIntroducido_caja.setText(numeroIntroducido_caja.getText().toString().replaceAll(
+                "[.]", getResources().getString(R.string.decimal)));
     }
 
 
@@ -116,71 +126,79 @@ public class MainActivity extends AppCompatActivity {
     //      2. primeroNumero setearlo para coger el segundo numero
     //      --Teniendo el segundo numero introducido--
     //          2.1. Si le da a otra operación: el resultado de la operacion anterior se guarda en el numeroMemoria, se empieza el punto 2. otra vez.
-    //          2.2. Si le da al boton igual "=" -> mostrar resultado
+    //          2.
+    // 2. Si le da al boton igual "=" -> mostrar resultado
 
     //OPERACIONES
     //TODO DEBE DEVOVLER EL TIPO DE OPERACIÓN
     public void operacionElegida(View view) {
-        numeroMemoria_caja.setText(numeroIntroducido_caja.getText());
-        numeroIntroducido_caja.setText("");
-        if (!(numeroMemoria_caja.getText().toString().matches(""))){
+        segundoNumero_caja.setText(numeroIntroducido_caja.getText());
+
+
+        if (!(segundoNumero_caja.getText().toString().isEmpty())){
             Button buttonOperacion = (Button) view;
+
+            numeroMemoria = Double.parseDouble(segundoNumero_caja.getText().toString());
+
             switch (buttonOperacion.getId()){
                 case R.id.btnCalcPlus:
-                    numeroMemoria_caja.append("+");
+                    operacion = 1;
+                    segundoNumero_caja.append("+");
                     break;
                 case R.id.btnCalcMinus:
-                    numeroMemoria_caja.append("-");
+                    operacion = 2;
+                    segundoNumero_caja.append("-");
                     break;
                 case R.id.btnCalcDivide:
-                    numeroMemoria_caja.append("/");
+                    operacion = 3;
+                    segundoNumero_caja.append("÷");
                     break;
                 case R.id.btnCalcMultiply:
-                    numeroMemoria_caja.append("*");
+                    operacion = 4;
+                    segundoNumero_caja.append("*");
                     break;
-                    /*
-                case R.id.btnCalcPercent:
-                    //TODO control de resultado
-                    break;
-
-                     */
             }
+
+            numeroIntroducido_caja.setText("");
+        }else{
+            numeroMemoria = 0;
         }
     }
     public void pulsarBotonIgual(View view) {
-        //identificar la operacion
-        String operacion = String.valueOf(numeroMemoria_caja.getText().toString().charAt(0));
-        //quitar la operacion del memoria_caja
-        String segundoNumeroSinOperacion = numeroMemoria_caja.getText().toString().substring(1);
-        //castear String to Double para hacer los operaciones
-        Double primerNumero =  Double.parseDouble(numeroMemoria_caja.getText().toString());
-        Double segundoNumero = Double.parseDouble(numeroIntroducido_caja.getText().toString());
+        if (operacion != 0){
+        numeroIntroducido = Double.parseDouble(numeroIntroducido_caja.getText().toString());
+
+        Double primerNumero =  numeroMemoria;
+        Double segundoNumero = numeroIntroducido;
+
         Double resultadosAux = 0.0;
         switch (operacion){
-            case "+":
+            case 1:
                 resultadosAux = primerNumero + segundoNumero;
                 break;
-            case "-":
+            case 2:
                 resultadosAux = primerNumero - segundoNumero;
                 break;
-            case "/":
+            case 3:
                 resultadosAux = primerNumero / segundoNumero;
                 break;
-            case "*":
+            case 4:
                 resultadosAux = primerNumero * segundoNumero;
                 break;
         }
-        numeroMemoria_caja.setText(String.valueOf(resultadosAux));
-        numeroIntroducido_caja.setText("");
+        numeroIntroducido_caja.setText(String.valueOf(resultadosAux));
+        segundoNumero_caja.setText("");
+        operacion = 0;
+        }
     }
 
     public void borrarCalculadora(View view) {
-        numeroMemoria_caja.setText("");
+        segundoNumero_caja.setText("");
         numeroIntroducido_caja.setText("");
     }
 
     public void cambiarSigno(View view) {
-        Double numero = Double.valueOf(numeroMemoria_caja.getText().toString());
+        Double numero = Double.valueOf(segundoNumero_caja.getText().toString());
         if (numero != 0){
             if (numero > 0){
                 // + --> -
@@ -193,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void calcularPorcentaje(View view) {
-        Double numero = Double.valueOf(numeroMemoria_caja.getText().toString());
+        Double numero = Double.valueOf(segundoNumero_caja.getText().toString());
         if (numero > 100) {
             numero = numero / 100;
         }
@@ -201,10 +219,8 @@ public class MainActivity extends AppCompatActivity {
 
     //MC (Memory Clear)
     public void borrarMemoria(View view) {
-        if (numeroMemoria != null){
-            numeroMemoria = 0.0;
-            textView_simbolo_memoria.setText("");
-        }
+        numeroMemoria = 0.0;
+        textView_simbolo_memoria.setText("");
     }
 
     /*
@@ -230,11 +246,5 @@ public class MainActivity extends AppCompatActivity {
      */
     public void restarMemoria(View view) {
 
-
     }
-
-
-
-
-
 }
