@@ -199,8 +199,42 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //MC (Memory Clear)
     public void borrarMemoria(View view) {
-        numeroMemoria = 0.0;
-        textView_simbolo_memoria.setText("");
+        if (numeroMemoria != null){
+            numeroMemoria = 0.0;
+            textView_simbolo_memoria.setText("");
+        }
     }
+
+    /*
+   MR (Memory Recall):
+   Recupera el número almacenado en memoria. El número permanece en memoria.
+    */
+    public void llamarMemoria(View view) {
+
+
+    }
+
+    /*
+        M+:
+        Suma el número mostrado a otro número que se encuentre en memoria pero no muestra la suma de estos números.
+     */
+    public void sumarMemoria(View view) {
+
+    }
+
+    /*
+        M-:
+        Resta el número mostrado a otro número que se encuentre en memoria pero no muestra la resta de estos números.
+     */
+    public void restarMemoria(View view) {
+
+
+    }
+
+
+
+
+
 }

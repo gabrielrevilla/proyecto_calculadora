@@ -70,12 +70,14 @@
                 android:text="MC" />
 
             <Button
+                android:onClick="sumarMemoria"
                 android:id="@+id/btnCalcMplus"
                 style="@style/calcBtnMemoria"
                 android:layout_weight="1"
                 android:text="M+" />
 
             <Button
+                android:onClick="restarMemoria"
                 android:id="@+id/btnCalcMminus"
                 style="@style/calcBtnMemoria"
                 android:layout_weight="1"
@@ -83,6 +85,7 @@
 
             <Button
                 android:id="@+id/btnCalcMr"
+                android:onClick="llamarMemoria"
                 style="@style/calcBtnMemoria"
                 android:layout_weight="1"
                 android:text="MR" />
