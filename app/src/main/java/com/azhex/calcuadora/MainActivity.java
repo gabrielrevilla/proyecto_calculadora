@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     4 -> DIVIDIR
      */
     private int operacion = 0;
-    private double numeroMemoria = 0;
+    private static double numeroMemoria = 0;
     private double numeroIntroducido = 0;
 
     @Override
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         //buscar en los recursos: coma o punto
         separacionXMil =  getResources().getString(R.string.decimal);
         //simbolo memoria
-        textView_simbolo_memoria = findViewById(R.id.simboloMemodia);
+        textView_simbolo_memoria = findViewById(R.id.simboloMemoria);
 
     }
 
@@ -75,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.button_cero:
                 if (!numeroIntroducido_caja.getText().toString().equals("")){
                     numeroIntroducido_caja.append("0");
+                }else{
+                    //todo line 119
                 }
                 break;
             case R.id.btnCalc1:
@@ -105,29 +107,24 @@ public class MainActivity extends AppCompatActivity {
                 numeroIntroducido_caja.append("9");
                 break;
             case R.id.button_coma:
-                Button buttonComa = (Button) view;
-                if (!buttonComa.getText().toString().isEmpty()) {
-                    numeroIntroducido_caja.append("0");
-                    numeroIntroducido_caja.append(".");
-                }else{
-                    numeroIntroducido_caja.append(".");
+                if (view.getTag().equals(false)){ // si no ha sido pulsado
+                    if (numeroIntroducido_caja.getText().toString().isEmpty()) {
+                        numeroIntroducido_caja.append("0");
+                        numeroIntroducido_caja.append(".");
+                    }else{
+                        numeroIntroducido_caja.append(".");
+                    }
+                    //settearlo a ya pulsado
+                    view.setTag(true);
                 }
                 break;
         }
-
-        numeroIntroducido = Double.parseDouble(numeroIntroducido_caja.getText().toString());
-        numeroIntroducido_caja.setText(numeroIntroducido_caja.getText().toString().replaceAll(
-                "[.]", getResources().getString(R.string.decimal)));
+        if(numeroIntroducido_caja.getText().equals("0")){
+            numeroIntroducido = Double.parseDouble(numeroIntroducido_caja.getText().toString());
+            numeroIntroducido_caja.setText(numeroIntroducido_caja.getText().toString().replaceAll(
+                    "[.]", getResources().getString(R.string.decimal)));
+        }
     }
-
-
-    //Si se pulsa cualquier boton de operacion,
-    //      1. el primerNumeroIntroducido debe pasar a ser numeroMemoria
-    //      2. primeroNumero setearlo para coger el segundo numero
-    //      --Teniendo el segundo numero introducido--
-    //          2.1. Si le da a otra operación: el resultado de la operacion anterior se guarda en el numeroMemoria, se empieza el punto 2. otra vez.
-    //          2.
-    // 2. Si le da al boton igual "=" -> mostrar resultado
 
     //OPERACIONES
     //TODO DEBE DEVOVLER EL TIPO DE OPERACIÓN
@@ -137,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
 
         if (!(segundoNumero_caja.getText().toString().isEmpty())){
             Button buttonOperacion = (Button) view;
-
             numeroMemoria = Double.parseDouble(segundoNumero_caja.getText().toString());
 
             switch (buttonOperacion.getId()){
@@ -158,47 +154,50 @@ public class MainActivity extends AppCompatActivity {
                     segundoNumero_caja.append("*");
                     break;
             }
-
             numeroIntroducido_caja.setText("");
         }else{
             numeroMemoria = 0;
         }
     }
     public void pulsarBotonIgual(View view) {
-        if (operacion != 0){
-        numeroIntroducido = Double.parseDouble(numeroIntroducido_caja.getText().toString());
+        if (operacion != 0 && !numeroIntroducido_caja.getText().toString().isEmpty()){
+            numeroIntroducido = Double.parseDouble(numeroIntroducido_caja.getText().toString());
 
-        Double primerNumero =  numeroMemoria;
-        Double segundoNumero = numeroIntroducido;
+            Double primerNumero =  numeroMemoria;
+            Double segundoNumero = numeroIntroducido;
 
-        Double resultadosAux = 0.0;
-        switch (operacion){
-            case 1:
-                resultadosAux = primerNumero + segundoNumero;
-                break;
-            case 2:
-                resultadosAux = primerNumero - segundoNumero;
-                break;
-            case 3:
-                resultadosAux = primerNumero / segundoNumero;
-                break;
-            case 4:
-                resultadosAux = primerNumero * segundoNumero;
-                break;
-        }
-        numeroIntroducido_caja.setText(String.valueOf(resultadosAux));
-        segundoNumero_caja.setText("");
-        operacion = 0;
+            Double resultadosAux = 0.0;
+            switch (operacion){
+                case 1:
+                    resultadosAux = primerNumero + segundoNumero;
+                    break;
+                case 2:
+                    resultadosAux = primerNumero - segundoNumero;
+                    break;
+                case 3:
+                    resultadosAux = primerNumero / segundoNumero;
+                    break;
+                case 4:
+                    resultadosAux = primerNumero * segundoNumero;
+                    break;
+            }
+            numeroIntroducido_caja.setText(String.valueOf(resultadosAux));
+            segundoNumero_caja.setText("");
+            operacion = 0;
         }
     }
 
     public void borrarCalculadora(View view) {
         segundoNumero_caja.setText("");
         numeroIntroducido_caja.setText("");
+
+        //resetear coma tag pulsado
+        findViewById(R.id.button_coma).setTag(false);
     }
 
+    //Boton +/-
     public void cambiarSigno(View view) {
-        Double numero = Double.valueOf(segundoNumero_caja.getText().toString());
+        Double numero = Double.valueOf(numeroIntroducido_caja.getText().toString());
         if (numero != 0){
             if (numero > 0){
                 // + --> -
@@ -208,19 +207,32 @@ public class MainActivity extends AppCompatActivity {
                 numero = numero * (-1);
             }
         }
+        numeroIntroducido_caja.setText(numero.toString());
     }
 
     public void calcularPorcentaje(View view) {
-        Double numero = Double.valueOf(segundoNumero_caja.getText().toString());
-        if (numero > 100) {
+        Double numero = Double.valueOf(numeroIntroducido_caja.getText().toString());
+        if (numero > 0.000000000000001){
             numero = numero / 100;
         }
+        numeroIntroducido_caja.setText(numero.toString());
     }
 
     //MC (Memory Clear)
     public void borrarMemoria(View view) {
-        numeroMemoria = 0.0;
-        textView_simbolo_memoria.setText("");
+        if (view.isEnabled()){
+            numeroMemoria = 0.0;
+            textView_simbolo_memoria.setText("");
+
+            //botones memoria enabled
+            view.setEnabled(false);
+            findViewById(R.id.btnCalcMr).setEnabled(false);
+            findViewById(R.id.btnCalcMplus).setTag("false");
+
+
+            //simbolo memoria
+            textView_simbolo_memoria.setText("");
+        }
     }
 
     /*
@@ -228,7 +240,8 @@ public class MainActivity extends AppCompatActivity {
    Recupera el número almacenado en memoria. El número permanece en memoria.
     */
     public void llamarMemoria(View view) {
-
+        //TODO CONTROL boton disable
+            numeroIntroducido_caja.setText(String.valueOf(numeroMemoria));
 
     }
 
@@ -237,7 +250,23 @@ public class MainActivity extends AppCompatActivity {
         Suma el número mostrado a otro número que se encuentre en memoria pero no muestra la suma de estos números.
      */
     public void sumarMemoria(View view) {
+        if (view.getTag().equals("false")){
+            numeroMemoria = Double.valueOf(numeroIntroducido_caja.getText().toString());
+            numeroIntroducido_caja.setText(String.valueOf(numeroMemoria));
 
+            //botones memoria enabled
+            Button bMC = findViewById(R.id.btnCalcMc);
+            bMC.setEnabled(true);
+            Button bMR = findViewById(R.id.btnCalcMr);
+            bMR.setEnabled(true);
+
+            //Signo Memoria
+            textView_simbolo_memoria.setText("M");
+            view.setTag(true);
+        }else{
+            Double nuevaMemoriaAuz = numeroMemoria * 2;
+            numeroMemoria = nuevaMemoriaAuz;
+        }
     }
 
     /*
@@ -245,6 +274,15 @@ public class MainActivity extends AppCompatActivity {
         Resta el número mostrado a otro número que se encuentre en memoria pero no muestra la resta de estos números.
      */
     public void restarMemoria(View view) {
-
+        if (numeroMemoria != 0){
+            numeroMemoria = 0;
+        }
     }
+
+
+    //TODO BOTON COMA
+    //todo el cero a secas no funciona
+    //TODO disable botones MC y MR si memoria esta vacia
+    //TODO boton coma no funciona
+
 }

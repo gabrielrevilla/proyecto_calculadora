@@ -33,11 +33,13 @@
             android:orientation="horizontal"
             style="@style/inDispNumeros">
             <TextView
-                android:id="@+id/simboloMemodia"
+                android:paddingRight="30dp"
+                android:paddingTop="10dp"
+                android:id="@+id/simboloMemoria"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="20"
-                android:textSize="40dp"
+                android:textSize="30sp"
                 android:maxLines="1"
                 android:textAlignment="textEnd"/>
 
@@ -67,6 +69,7 @@
             android:layout_weight="1">
 
             <Button
+                android:enabled="false"
                 android:id="@+id/btnCalcMc"
                 style="@style/calcBtnMemoria"
                 android:layout_weight="1"
@@ -76,6 +79,7 @@
             <Button
                 android:id="@+id/btnCalcMplus"
                 style="@style/calcBtnMemoria"
+                android:tag="false"
                 android:layout_weight="1"
                 android:onClick="sumarMemoria"
                 android:text="M+" />
@@ -88,6 +92,7 @@
                 android:text="M-" />
 
             <Button
+                android:enabled="false"
                 android:id="@+id/btnCalcMr"
                 style="@style/calcBtnMemoria"
                 android:layout_weight="1"
@@ -247,7 +252,9 @@
             <Button
                 android:id="@+id/button_coma"
                 style="@style/calcBtn"
+                android:tag="true"
                 android:layout_weight="1"
+                android:onClick="escribirNumero"
                 android:text="@string/decimal" />
 
             <Button
