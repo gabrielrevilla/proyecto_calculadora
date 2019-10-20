@@ -11,15 +11,30 @@
     <style name="calcBtnMemoria">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/botones_calculadora_memoria_style</item>
         <item name="android:textSize">20dp</item>
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:textColor">#fff</item>
     </style>
 
     <style name="calcBtn">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:drawable">@drawable/botones_calculadora_style</item>
+        <item name="android:background">@drawable/botones_calculadora_style</item>
         <item name="android:textSize">25dp</item>
-        <item name="android:onClick"></item>
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:textColor">#fff</item>
+    </style>
+
+    <style name="inDispNumeros">
+        <item name="android:background">@drawable/in_display_numeros</item>
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:padding">3dp</item>
+    </style>
+
+    <style name="bgBotonesCalc">
+        <item name="android:padding">3dp</item>
+        <item name="android:background">@drawable/bg_botones</item>
     </style>
 
 </resources>

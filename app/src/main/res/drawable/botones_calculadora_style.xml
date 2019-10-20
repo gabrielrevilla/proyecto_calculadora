@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
+    <item android:state_enabled="true">
         <shape android:shape="rectangle">
-            <corners android:radius="7dp"></corners>
-            <solid android:color="@color/colorPrimary"></solid>
-            <stroke android:color="@color/colorPrimaryDark" android:width="5dp"></stroke>
-            <gradient android:angle="270" android:startColor="@color/colorPrimary" android:endColor="@color/colorPrimaryDark"></gradient>
+            <corners android:radius="7dp"/>
+            <solid android:color="@color/btnCalc"/>
+            <stroke android:color="@color/btnCalcBorder" android:width="5dp"/>
+            <gradient android:angle="270" android:startColor="@color/btnCalc" android:endColor="@color/btnCalcEnd"/>
         </shape>
     </item>
+
+    <item android:state_hovered="true" >
+        <shape android:shape="rectangle">
+            <corners android:radius="7dp"/>
+            <solid android:color="@color/btnHoveredCalc"/>
+            <stroke android:color="@color/btnHoveredCalcBorder" android:width="5dp"/>
+            <gradient android:angle="270" android:startColor="@color/btnHoveredCalc" android:endColor="@color/btnHoveredCalcEnd"/>
+        </shape>
+    </item>
+
 </selector>

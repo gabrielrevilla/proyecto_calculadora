@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
     public void escribirNumero(View view) {
         switch (view.getId()){
             case R.id.button_cero:
-                if (!numeroIntroducido_caja.getText().toString().matches("")){
+                if (!numeroIntroducido_caja.getText().toString().equals("")){
                     numeroIntroducido_caja.append("0");
                 }
                 break;

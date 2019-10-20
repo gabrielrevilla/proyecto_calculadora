@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="5dp"
+    android:padding="0dp"
     android:weightSum="100"
     tools:context=".MainActivity">
 
@@ -22,6 +22,7 @@
             android:layout_height="0dp"
             android:layout_weight="40"
             android:textAlignment="textEnd"
+            style="@style/inDispNumeros"
             android:maxLines="1"
             android:textSize="25dp" />
 
@@ -29,7 +30,8 @@
             android:layout_width="match_parent"
             android:layout_weight="60"
             android:layout_height="0dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            style="@style/inDispNumeros">
             <TextView
                 android:id="@+id/simboloMemodia"
                 android:layout_width="0dp"
@@ -56,7 +58,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="80"
-        android:collapseColumns="true">
+        android:collapseColumns="true"
+        style="@style/bgBotonesCalc">
 
         <TableRow
             android:layout_width="match_parent"
@@ -64,31 +67,31 @@
             android:layout_weight="1">
 
             <Button
-                android:onClick="borrarMemoria"
                 android:id="@+id/btnCalcMc"
                 style="@style/calcBtnMemoria"
                 android:layout_weight="1"
+                android:onClick="borrarMemoria"
                 android:text="MC" />
 
             <Button
-                android:onClick="sumarMemoria"
                 android:id="@+id/btnCalcMplus"
                 style="@style/calcBtnMemoria"
                 android:layout_weight="1"
+                android:onClick="sumarMemoria"
                 android:text="M+" />
 
             <Button
-                android:onClick="restarMemoria"
                 android:id="@+id/btnCalcMminus"
                 style="@style/calcBtnMemoria"
                 android:layout_weight="1"
+                android:onClick="restarMemoria"
                 android:text="M-" />
 
             <Button
                 android:id="@+id/btnCalcMr"
-                android:onClick="llamarMemoria"
                 style="@style/calcBtnMemoria"
                 android:layout_weight="1"
+                android:onClick="llamarMemoria"
                 android:text="MR" />
         </TableRow>
 
@@ -99,30 +102,30 @@
 
             <Button
                 android:id="@+id/btnCalcAc"
-                android:onClick="borrarCalculadora"
                 style="@style/calcBtn"
                 android:layout_weight="1"
+                android:onClick="borrarCalculadora"
                 android:text="AC" />
 
             <Button
                 android:id="@+id/btnCalcPlusMinus"
-                android:onClick="cambiarSigno"
                 style="@style/calcBtn"
                 android:layout_weight="1"
+                android:onClick="cambiarSigno"
                 android:text="+/-" />
 
             <Button
                 android:id="@+id/btnCalcPercent"
-                android:onClick="calcularPorcentaje"
                 style="@style/calcBtn"
                 android:layout_weight="1"
+                android:onClick="calcularPorcentaje"
                 android:text="%" />
 
             <Button
                 android:id="@+id/btnCalcDivide"
                 style="@style/calcBtn"
-                android:onClick="operacionElegida"
                 android:layout_weight="1"
+                android:onClick="operacionElegida"
                 android:text="/" />
         </TableRow>
 
@@ -134,29 +137,29 @@
             <Button
                 android:id="@+id/btnCalc7"
                 style="@style/calcBtn"
-                android:onClick="escribirNumero"
                 android:layout_weight="1"
+                android:onClick="escribirNumero"
                 android:text="7" />
 
             <Button
                 android:id="@+id/btnCalc8"
                 style="@style/calcBtn"
-                android:onClick="escribirNumero"
                 android:layout_weight="1"
+                android:onClick="escribirNumero"
                 android:text="8" />
 
             <Button
                 android:id="@+id/btnCalc9"
                 style="@style/calcBtn"
-                android:onClick="escribirNumero"
                 android:layout_weight="1"
+                android:onClick="escribirNumero"
                 android:text="9" />
 
             <Button
                 android:id="@+id/btnCalcMultiply"
                 style="@style/calcBtn"
-                android:onClick="operacionElegida"
                 android:layout_weight="1"
+                android:onClick="operacionElegida"
                 android:text="X" />
         </TableRow>
 
@@ -166,31 +169,31 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/btnCalc6"
+                android:id="@+id/btnCalc4"
                 style="@style/calcBtn"
-                android:onClick="escribirNumero"
                 android:layout_weight="1"
-                android:text="6" />
+                android:onClick="escribirNumero"
+                android:text="4" />
 
             <Button
                 android:id="@+id/btnCalc5"
                 style="@style/calcBtn"
-                android:onClick="escribirNumero"
                 android:layout_weight="1"
+                android:onClick="escribirNumero"
                 android:text="5" />
 
             <Button
-                android:id="@+id/btnCalc4"
+                android:id="@+id/btnCalc6"
                 style="@style/calcBtn"
-                android:onClick="escribirNumero"
                 android:layout_weight="1"
-                android:text="4" />
+                android:onClick="escribirNumero"
+                android:text="6" />
 
             <Button
                 android:id="@+id/btnCalcPlus"
                 style="@style/calcBtn"
-                android:onClick="operacionElegida"
                 android:layout_weight="1"
+                android:onClick="operacionElegida"
                 android:text="+" />
         </TableRow>
 
@@ -200,31 +203,31 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/btnCalc3"
+                android:id="@+id/btnCalc1"
                 style="@style/calcBtn"
-                android:onClick="escribirNumero"
                 android:layout_weight="1"
-                android:text="3" />
+                android:onClick="escribirNumero"
+                android:text="1" />
 
             <Button
                 android:id="@+id/btnCalc2"
                 style="@style/calcBtn"
-                android:onClick="escribirNumero"
                 android:layout_weight="1"
+                android:onClick="escribirNumero"
                 android:text="2" />
 
             <Button
-                android:id="@+id/btnCalc1"
+                android:id="@+id/btnCalc3"
                 style="@style/calcBtn"
-                android:onClick="escribirNumero"
                 android:layout_weight="1"
-                android:text="1" />
+                android:onClick="escribirNumero"
+                android:text="3" />
 
             <Button
                 android:id="@+id/btnCalcMinus"
                 style="@style/calcBtn"
-                android:onClick="operacionElegida"
                 android:layout_weight="1"
+                android:onClick="operacionElegida"
                 android:text="-" />
         </TableRow>
 
@@ -237,8 +240,8 @@
             <Button
                 android:id="@+id/button_cero"
                 style="@style/calcBtn"
-                android:onClick="escribirNumero"
                 android:layout_weight="2"
+                android:onClick="escribirNumero"
                 android:text="0" />
 
             <Button
@@ -250,8 +253,8 @@
             <Button
                 android:id="@+id/button_igual"
                 style="@style/calcBtn"
-                android:onClick="pulsarBotonIgual"
                 android:layout_weight="1"
+                android:onClick="pulsarBotonIgual"
                 android:text="=" />
         </TableRow>
     </TableLayout>

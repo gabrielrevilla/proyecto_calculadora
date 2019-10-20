@@ -3,4 +3,21 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="greyBackground">#a4a4a4</color>
+
+    <color name="bg_botones">#B0D8D1</color>
+
+    <color name="btnCalc">#008577</color>
+    <color name="btnCalcEnd">#026F63</color>
+    <color name="btnCalcBorder">#00574B</color>
+    <color name="btnHoveredCalc">#036D3B</color>
+    <color name="btnHoveredCalcEnd">#075F36</color>
+    <color name="btnHoveredCalcBorder">#024B29</color>
+
+    <color name="btnCalcMemoria">#850000</color>
+    <color name="btnCalcMemoriaEnd">#6F0202</color>
+    <color name="btnCalcMemoriaBorder">#570000</color>
+    <color name="btnHoveredCalcMemoria">#6D0303</color>
+    <color name="btnHoveredCalcMemoriaEnd">#5F0707</color>
+    <color name="btnHoveredCalcMemoriaBorder">#4B0202</color>
 </resources>
