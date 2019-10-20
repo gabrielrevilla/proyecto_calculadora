@@ -7,13 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-
-    //TODO
     /*
-    1. Hacer funcionar una opearcion, la suma.
-    2. Acceso al repositorio
-    3.
-    4.
     legibilidad y organización del código (indentado, estructura, comentarios) [1 punto]
     ➢ layout y presentación de la interfaz [1 punto]
     ➢ manejo y presentación en pantalla del input del teclado numérico [1,5 puntos]
@@ -25,12 +19,8 @@ public class MainActivity extends AppCompatActivity {
     ➢ cambiar nombre app y texto de calculadora (. / ,) en función del idioma [1 punto]
      */
 
-    //Declaramos dos variables: el numeroEnMemoria y el numeroIntroducido;
-    //Los declaramos como String -> por que el usario introduce un numero a la vez, por lo que podremos concatenarlos y entonces convertirlos en un int de más de una cifra
-
     private static TextView numeroIntroducido_caja;
     private static TextView segundoNumero_caja;
-    private String separacionXMil;
     private static TextView textView_simbolo_memoria;
 
     /*
@@ -56,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         segundoNumero_caja = findViewById(R.id.numeroMemoria);
 
         //buscar en los recursos: coma o punto
-        separacionXMil =  getResources().getString(R.string.decimal);
         //simbolo memoria
         textView_simbolo_memoria = findViewById(R.id.simboloMemoria);
 
@@ -278,11 +267,7 @@ public class MainActivity extends AppCompatActivity {
             numeroMemoria = 0;
         }
     }
-
-
-    //TODO BOTON COMA
-    //todo el cero a secas no funciona
-    //TODO disable botones MC y MR si memoria esta vacia
-    //TODO boton coma no funciona
-
+    
+    //TODO BOTON COMA no funciona, pero despues de introducir un numero y borrar la calculadora entonces va....un bug
+    //TODO mostrar si es como o punto despues de hacer la operación
 }
