@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
-        <shape android:shape="rectangle">
-            <solid android:color="@color/bg_botones"/>
-        </shape>
+        <layer-list>
+            <item>
+                <shape
+                    android:shape="rectangle">
+                    <stroke android:width="3dp" android:color="#568A7B" />
+                    <solid android:color="#FFDDDDDD" />
+
+                </shape>
+            </item>
+            <item android:top="3dp">
+                <shape
+                    android:shape="rectangle">
+                    <stroke android:width="2dp" android:color="@color/bg_botones" />
+                    <solid android:color="@color/bg_botones" />
+                </shape>
+            </item>
+        </layer-list>
     </item>
 </selector>
