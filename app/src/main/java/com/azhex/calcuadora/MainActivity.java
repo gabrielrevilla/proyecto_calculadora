@@ -48,10 +48,7 @@ public class MainActivity extends AppCompatActivity {
         //buscar en los recursos: coma o punto
         //simbolo memoria
         textView_simbolo_memoria = findViewById(R.id.simboloMemoria);
-
     }
-
-
     //CONTROL DE LISTENERS --> NUMEROS, OPERACIONES, MEMORIA...
     //NUMEROS
 
@@ -96,16 +93,16 @@ public class MainActivity extends AppCompatActivity {
                 numeroIntroducido_caja.append("9");
                 break;
             case R.id.button_coma:
-                if (view.getTag().equals(false)){ // si no ha sido pulsado
-                    if (numeroIntroducido_caja.getText().toString().isEmpty()) {
-                        numeroIntroducido_caja.append("0");
-                        numeroIntroducido_caja.append(".");
-                    }else{
+                if (numeroIntroducido_caja.getText().toString().isEmpty()) {
+                    numeroIntroducido_caja.append("0");
+                    numeroIntroducido_caja.append(".");
+                }else{
+                    if(Double.parseDouble(numeroIntroducido_caja.getText().toString()) % 1 == 0
+                            && numeroIntroducido_caja.getText().toString().indexOf(getResources().getString(R.string.decimal)) == -1){
                         numeroIntroducido_caja.append(".");
                     }
-                    //settearlo a ya pulsado
-                    view.setTag(true);
                 }
+
                 break;
         }
         if(numeroIntroducido_caja.getText().equals("0")){
@@ -171,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
             numeroIntroducido_caja.setText(String.valueOf(resultadosAux));
+
             segundoNumero_caja.setText("");
             operacion = 0;
         }
@@ -201,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void calcularPorcentaje(View view) {
         Double numero = Double.valueOf(numeroIntroducido_caja.getText().toString());
-        if (numero > 0.000000000000001){
+        if (numero > 0.0000000001){
             numero = numero / 100;
         }
         numeroIntroducido_caja.setText(numero.toString());
